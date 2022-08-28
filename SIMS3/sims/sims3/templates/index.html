@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>欢迎</title>
+    {% load static %}
+    {% load bootstrap4 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript jquery='full' %}
+    <link rel="shortcut icon" href="/static/image/favicon.ico">
+</head>
+<body>
+<nav class="navbar navbar-expand-md navbar-light bg-light mb-4 border">
+
+    <a class="navbar-brand" href="{% url 'index' %}">SIMS Ⅲ</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarCollapse" aria-controls="navbarCollapse"
+            aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span></button>
+
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav ml-auto">
+            {% if user.is_authenticated %}
+                <li class="nav-item">
+                    <span class="navbar-text">Hello, {{ user.username }}.</span>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'logout' %}">Log out</a>
+                </li>
+            {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'register' %}">Register</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'login' %}">Log in</a></li>
+            {% endif %}
+        </ul>
+    </div>
+</nav>
+
+<main role="main" class="container">
+    <div class="pb-2 mb-2 border-bottom">
+        <div class="jumbotron">
+            <h1 class="display-3">学生信息管理系统</h1>
+            <p class="lead">
+                学生信息管理系统是针对学校人事处的大量业务处理工作而开发的管理软件，主要用于学校学生信息管理，
+                总体任务是实现学生信息关系的系统化、科学化、规范化和自动化，其主要任务是用计算机对学生各种信息进行日常管理，
+                如查询、修改、增加、删除，另外还考虑到学生选课，针对这些要求设计了学生信息管理系统。</p>
+            <a class="btn btn-lg btn-primary" href="{% url 'login' %}"
+               role="button" style="float:right">进入学生信息管理系统！</a>
+        </div>
+    </div>
+</main>
+
+<div class="banner2" align="center"> 昆明理工大学管经学院19级信息管理专业小学期实践项目</div>
+<div class="banner3" align="center"> Version 3.0， 2021年8月， @信管191 尚若冰</div>
+</body>
+</html>

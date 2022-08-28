@@ -1,0 +1,40 @@
+CREATE DATABASE simsdb;
+USE simsdb;
+
+CREATE TABLE student (
+	studentID VARCHAR ( 20 ),
+	name VARCHAR ( 10 ),
+	phone VARCHAR ( 11 ),
+	email VARCHAR ( 30 ),
+	dorm VARCHAR ( 10 ),
+	score_1 INT,
+	score_2 INT,
+	score_3 INT,
+    PRIMARY KEY ( studentId )
+);
+
+INSERT INTO student (studentID,name,phone,email,dorm,score_1,score_2,score_3)
+VALUES
+('1901','王益阳','17630276182','yywang@kust.edu.cn','怡园6102',87,98,93),
+('1902','吴翰芃','15822686793','hfwu@kust.edu.cn','怡园6102',67,77,87),
+('1903','王斌文','15887432042','bwwang@kust.edu.cn','怡园6103',99,97,94),
+('1996','张三丰','19988430921','sazhang@kust.edu.cn','怡园6102',78,65,45),
+('1997','张三丰','19988431314','sazhang@kust.edu.cn','怡园6103',88,90,76),
+('1998','李四电','13551049873','sdli@kust.edu.cn','怡园6103',56,67,76),
+('1999','李四电','18889342022','sili@kust.edu.cn','怡园6102',89,48,90);
+
+
+CREATE TABLE user(
+	id INT,
+	name VARCHAR(15),
+	type VARCHAR(15),
+	password VARCHAR(20),
+	PRIMARY KEY(id)
+);
+
+INSERT INTO user(id,name,type,password)
+VALUES
+(0,'guest','normal',123),
+(1,'admin','administrator',12345678),
+(2,'Jerry','teacher',123456),
+(3,'ruobing','administrator',010209);

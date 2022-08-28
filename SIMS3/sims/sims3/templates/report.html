@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>报表打印</title>
+    {% load static %}
+    <link href="{% static 'css/Daily_items/daily_data.css' %}" rel="stylesheet">
+    <link href="{% static 'css/Daily_items/font-awesome.css' %}?v=4.4.0" rel="stylesheet">
+    <link href="{% static 'css/Daily_items/plugins/iCheck/custom.css' %}" rel="stylesheet">
+    <link href="{% static 'css/Daily_items/animate.css' %}" rel="stylesheet">
+    <link href="{% static 'css/Daily_items/style.css' %}?v=4.1.0" rel="stylesheet">
+    <link type="text/css " rel="stylesheet" href="{% static 'css/Daily_items/ding.css' %}">
+    <script type="text/javascript" src="{% static 'js/Daily_items/ding.js' %}"></script>
+    <script src="{% static 'public/jquery/jquery-3.1.1.min.js' %}?v=2.1.4"></script>
+    <script src="{% static 'public/bootstrap/js/bootstrap.min.js' %}?v=3.3.6"></script>
+    <style>
+        #report {
+            float: right;
+        }
+
+        #report_table tr {
+            text-align: left;
+        }
+
+        #tb {
+            margin: 0;
+            height: 100%;
+            width: 100%;
+        }
+    </style>
+</head>
+<body style="margin: 0;">
+<fieldset id="report" name="report">
+    <legend> 请勾选您需要的信息</legend>
+    <form name="report" id="form" action="{% url 'report' %}" method="POST">
+        {% csrf_token %}
+        <table>
+
+            <tr>
+                <td><input type="checkbox" name="info[]" value="studentid" checked>
+                    学号
+                </td>
+            </tr>
+
+            <tr>
+                <td><input type="checkbox" name="info[]" value="name" checked>
+                    姓名
+                </td>
+            </tr>
+
+            <tr>
+                <td><input type="checkbox" name="info[]" value="phone">
+                    电话
+                </td>
+            </tr>
+
+            <tr>
+                <td><input type="checkbox" name="info[]" value="email">
+                    邮箱
+                </td>
+            </tr>
+
+            <tr>
+                <td><input type="checkbox" name="info[]" value="dorm">
+                    宿舍
+                </td>
+            </tr>
+
+            <tr>
+                <td><input type="checkbox" name="info[]" value="score_1">
+                    分数1
+                </td>
+            </tr>
+
+            <tr>
+                <td><input type="checkbox" name="info[]" value="score_2">
+                    分数2
+                </td>
+            </tr>
+
+            <tr>
+                <td><input type="checkbox" name="info[]" value="score_3">
+                    分数3
+                </td>
+            </tr>
+        </table>
+        <center><input type="submit" name="ensure" value="确认"></center>
+    </form>
+
+</fieldset>
+
+<div id="tb">
+    <div class="row">
+
+        <div class="text">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th><h4>序号</h4></th>
+                    <th><h4>学号</h4></th>
+                    <th><h4>姓名</h4></th>
+                    <th><h4>电话</h4></th>
+                    <th><h4>Email</h4></th>
+                    <th><h4>宿舍</h4></th>
+                    <th><h4>课程-1</h4></th>
+                    <th><h4>课程-2</h4></th>
+                    <th><h4>课程-3</h4></th>
+                </tr>
+                </thead>
+                <tbody id="road">
+                {% for i in students %}
+                    <tr>
+                        <td class="num">{{ forloop.counter }}</td>
+                        <td class="road_name">{{ i.studentid }}</td>
+                        <td class="road_place">{{ i.name }}</td>
+                        <td class="road_length">{{ i.phone }}</td>
+                        <td class="road_width">{{ i.email }}</td>
+                        <td class="liqing_area">{{ i.dorm }}</td>
+                        <td>{{ i.score_1 }}</td>
+                        <td>{{ i.score_2 }}</td>
+                        <td>{{ i.score_3 }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

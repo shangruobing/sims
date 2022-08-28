@@ -1,0 +1,52 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>学生信息管理系统</title>
+    <!-- 全局CSS -->
+    {% load static %}
+    <link href="/static/image/favicon.ico" rel="shortcut icon">
+    <link href="{% static 'public/bootstrap/css/bootstrap.min.css' %}?v=3.3.6" rel="stylesheet">
+    <link href="{% static 'css/index/font-awesome.min.css' %}?v=4.4.0" rel="stylesheet">
+    <link href="{% static 'css/index/animate.css' %}" rel="stylesheet">
+    <link href="{% static 'css/index/style.css' %}?v=4.1.0" rel="stylesheet">
+    <!-- 全局js -->
+    <script src="{% static 'public/jquery/jquery-3.1.1.min.js' %}?v=2.1.4"></script>
+    <script src="{% static 'public/bootstrap/js/bootstrap.min.js' %}?v=3.3.6"></script>
+    <script src="{% static 'js/index/plugins/metisMenu/jquery.metisMenu.js' %}"></script>
+    <script src="{% static 'js/index/plugins/slimscroll/jquery.slimscroll.min.js' %}"></script>
+    <script src="{% static 'js/index/plugins/layer/layer.min.js' %}"></script>
+    <!-- 自定义的全局js -->
+    <script src="{% static 'js/index/hAdmin.js' %}?v=4.1.0"></script>
+    <script type="text/javascript" src="{% static 'js/index/index.js' %}"></script>
+    {% block page-css %}
+        <!-- 方便增加其他自定义的CSS文件 -->
+    {% endblock %}
+    {% block page-js %}
+        <!-- 方便增加其他自定义的js文件 -->
+    {% endblock %}
+</head>
+
+<body class="fixed-sidebar full-height-layout gray-bg" style="overflow:hidden">
+<!-- page top -->
+<div id="header" style="padding-left:30px;height:85px;width:auto;background-color:#2F4050;color:#2f4050;">
+    <p style="padding-top:15px;font-size:25px;color:white;font-family:幼圆">学生信息管理系统</p>
+    <p style="padding-top:5px;font-size:18px;color:white;font-family:幼圆;margin-top:-20px">
+        University Students Information Management System @ 2021 Summer</p>
+</div>
+<!-- page body -->
+<!-- div id="wrapper"-->
+<div style="color: #2f4050;background-color:#2F4050;">
+    <!-- 左侧导航 -->
+    {% block page-left %}
+    {% endblock %}
+    <!-- 右侧部分 -->
+    {% block page-right %}
+    {% endblock %}
+</div>
+<!-- page bottom -->
+<div id="bottom" style="height:26px;width:auto;background-color:#2F4050">
+    <p style="text-align:center;font-size:15px;color:white;font-family:幼圆">
+        昆明理工大学管理与经济学院信息管理与信息系统专业19级课程实践</p>
+</div>
+</body>
+</html>

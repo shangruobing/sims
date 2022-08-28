@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>增加学生信息</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static '/css/form.css' %}"/>
+</head>
+<body>
+
+<div>
+    <fieldset>
+
+        <legend align="center"><h1>增加学生信息</h1></legend>
+
+        <form method="post" action="{% url 'addinfo' %}" id="form">
+            {% csrf_token %}
+            学号：<input type="text" name="studentid" placeholder="请输入学号" required
+                      title="学号仅由数字构成" pattern="^[0-9]*$">
+            姓名：<input type="text" name="name" placeholder="请输入姓名" required>
+            电话：<input type="text" name="phone" placeholder="请输入电话">
+            邮箱：<input type="text" name="email" placeholder="请输入邮箱">
+            <label>宿舍:</label><br> <select name="park" class="dorm">
+            <option value="怡园">怡园</option>
+            <option value="憬园">憬园</option>
+            <option value="恬园">恬园</option>
+            <option value="恒园">恒园</option>
+            <option value="莲华">莲华</option>
+        </select>
+            <select name="building" class="dorm">
+                <option value="1">1栋</option>
+                <option value="2">2栋</option>
+                <option value="3">3栋</option>
+                <option value="4">4栋</option>
+                <option value="5">5栋</option>
+                <option value="6">6栋</option>
+                <option value="7">7栋</option>
+                <option value="8">8栋</option>
+                <option value="9">9栋</option>
+            </select>
+            <input type="text" name="room" placeholder="请输入宿舍号"
+                   title="宿舍号仅由数字构成" pattern="^[0-9]*$" style="width: 31%"><br>
+            <center><input type="submit" value="保存">
+                <input type="button" value="清空" onclick="clearForm()"></center>
+        </form>
+    </fieldset>
+</div>
+<script>
+    function clearForm() {
+        document.getElementById("form").reset();
+    }
+</script>
+
+</body>
+</html>

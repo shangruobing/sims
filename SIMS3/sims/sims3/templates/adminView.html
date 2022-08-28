@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block page-left %}
+    <head>
+        <meta charset="utf-8">
+        <title>学生信息管理系统</title>
+    </head>
+    <nav class="navbar-default navbar-static-side" role="navigation">
+        <div class="nav-close"><i class="fa fa-times-circle"></i></div>
+        <div class="sidebar-collapse" style="background-color: #2F4050">
+            <ul class="nav" id="side-menu">
+                <li class="hidden-folded padder m-t m-b-sm text-muted text-xs">
+                    <span class="ng-scope"></span>
+                </li>
+                <li>
+                <li>
+                    <a href="#"><i class="fa fa-user"></i> <span class="nav-label">用户管理</span><span
+                            class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li><a class="J_menuItem" href="{% url 'users' %}">用户查询</a></li>
+                        <li><a class="J_menuItem" href="{% url 'adduser' %}">新增用户</a></li>
+                        <li><a class="J_menuItem" href="{% url 'revork' %}">用户授权</a></li>
+                        <li><a class="J_menuItem" href="{% url 'deleteuser' %}">删除用户</a></li>
+                        <li><a class="J_menuItem" href="{% url 'changePassword' %}">密码重置</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-calendar"></i> <span class="nav-label">学生管理</span><span
+                            class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li><a class="J_menuItem" href="{% url 'search' %}">信息查询</a></li>
+                        <li><a class="J_menuItem" href="{% url 'addinfo' %}">信息录入</a></li>
+                        <li><a class="J_menuItem" href="{% url 'updateinfo' %}">信息更改</a></li>
+                        <li><a class="J_menuItem" href="{% url 'deleteinfo' %}">信息删除</a></li>
+                        <li><a class="J_menuItem" href="{% url 'addscore' %}">成绩录入</a></li>
+                        <li><a class="J_menuItem" href="{% url 'stat' %}">信息统计</a></li>
+                        <li><a class="J_menuItem" href="{% url 'report' %}">报表打印</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-building-o"></i> <span class="nav-label">课程管理</span><span
+                            class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li><a class="J_menuItem" href="{% url 'courseinfo' %}">课程查询</a></li>
+                        <li><a class="J_menuItem" href="{% url 'addcourse' %}">课程发布</a></li>
+                        <li><a class="J_menuItem" href="{% url 'select' %}">学生选课</a></li>
+                        <li><a class="J_menuItem" href="{% url 'selected' %}">选课查询</a></li>
+                        <li><a class="J_menuItem" href="">教师审核</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-cog"></i> <span class="nav-label">系统管理</span><span
+                            class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li><a class="J_menuItem" href="{% url 'sysinfo' %}">系统信息</a></li>
+                        <li><a class="J_menuItem" href="{% url 'dbm' %}">数据库管理</a></li>
+                        <li><a class="J_menuItem" href="">功能授权</a></li>
+                        <li><a class="J_menuItem" href="{% url 'log' %}">系统日志</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-line-chart"></i> <span class="nav-label">数据分析</span><span
+                            class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li><a class="J_menuItem" href="">数据更新</a></li>
+                        <li><a class="J_menuItem" href="">数据修改</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+{% endblock %}
+{% block page-right %}
+    <div id="page-wrapper" class="white-bg dashbard-1">
+        <div class="row J_mainContent" id="content-main">
+            <iframe id="J_iframe" src="{% url 'search' %}" width="100%" height="100%" frameborder="0"
+                    data-id="seamless">
+            </iframe>
+        </div>
+    </div>
+{% endblock %}

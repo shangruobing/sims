@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>用户授权</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static '/css/form.css' %}"/>
+</head>
+<body>
+
+<div>
+    <fieldset>
+        <legend align="center"><h2>用户授权</h2></legend>
+        <form method="post" action="{% url 'revork' %}">
+            {% csrf_token %}
+            账号：<select name="id" id="id">
+            {% for i in users %}
+                <option {% if i.id == record.id %} selected="selected"
+                {% endif %}> {{ i.id }}
+                </option>
+            {% endfor %}
+        </select>
+            <br>
+            用户名：<input type="text" name="name" placeholder={{ record.name }}>
+            当前用户类型为：<input type="text" name="type" placeholder={{ record.type }}>
+            修改用户类型为：
+            <input type="radio" name="type" value="administrator">管理员
+            <input type="radio" name="type" value="normal" checked>学 生
+            <input type="radio" name="type" value="teacher">教 师 <br><br>
+            <center>
+                <input name="cutoff" type="submit" id="check" value=" 检  视 ">
+                <input name="cutoff" type="submit" id="delete" value="修改">
+            </center>
+        </form>
+    </fieldset>
+</div>
+<!--{% if messages %}-->
+    <!--<script>-->
+    <!--    {% for msg in messages %}-->
+        <!--    alert('{{ msg.message }}');-->
+        <!--    {% endfor %}-->
+    <!--</script>-->
+    <!--{% endif %}-->
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% load static %}
+    <title>用户注册</title>
+    <link rel="stylesheet" type="text/css" href="{% static '/css/login.css' %}">
+    <link rel="shortcut icon" href="/static/image/favicon.ico">
+</head>
+<body>
+<div class="login-box" align="center">
+    <form method="post" action="{% url 'register' %}">
+        {% csrf_token %}
+        <div id="select_type">
+            <h1>用户注册</h1>
+            请选择用户类型<br>
+            <input type="radio" name="usertype" value="administrator">管理员
+            <input type="radio" name="usertype" value="normal" checked>学生
+            <input type="radio" name="usertype" value="teacher">教师
+        </div>
+        <br>
+        请输入用户名：<input type="text" name="username" class="login-field"><br>
+        您的邮箱地址：<input type="text" name="email" class="login-field"><br>
+        请您输入密码：<input type="password" name="password1" class="login-field"><br>
+        再次输入密码：<input type="password" name="password2" class="login-field"><br>
+        <br>
+        <button type="submit" value=" 注  册 " class="inp">注册</button>
+        <button type="button" value=" 退  出 " class="inp" onclick="location.href=('/')">退出</button>
+    </form>
+</div>
+{% if messages %}
+    <script>
+        {% for msg in messages %}
+            alert('{{ msg.message }}');
+        {% endfor %}
+    </script>
+{% endif %}
+</body>
+</html>

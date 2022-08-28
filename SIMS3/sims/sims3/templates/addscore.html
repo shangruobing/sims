@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>成绩录入</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static '/css/form.css' %}"/>
+</head>
+<body>
+
+<div>
+    <fieldset>
+        <legend align="center"><h1>成绩录入</h1></legend>
+        <form method="post" action="{% url 'addscore' %}">
+            {% csrf_token %}
+            学号：<select name="studentid" id="studentid">
+            {% for i in students %}
+                <option {% if i.studentid == record.studentid %} selected="selected"
+                {% endif %}> {{ i.studentid }}
+                </option>
+            {% endfor %}
+        </select>
+            姓名：<input type="text" name="name" placeholder="{{ record.name }}" readonly>
+            课程 1：<input type="text" name="score_1" placeholder="{{ record.score_1 }}"
+                        pattern="^([0-9]|([1-9][0-9])|100)$" title="分数取值为0-100">
+            课程 2：<input type="text" name="score_2" placeholder="{{ record.score_2 }}"
+                        pattern="^([0-9]|([1-9][0-9])|100)$" title="分数取值为0-100">
+            课程 3：<input type="text" name="score_3" placeholder="{{ record.score_3 }}"
+                        pattern="^([0-9]|([1-9][0-9])|100)$" title="分数取值为0-100">
+            <center>
+                <input name="addscore" type="submit" id="check" value=" 检  视 ">
+                <input name="addscore" type="submit" id="add" value=" 增  加 ">
+            </center>
+        </form>
+    </fieldset>
+</div>
+
+</body>
+</html>

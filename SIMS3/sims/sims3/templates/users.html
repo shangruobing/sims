@@ -1,0 +1,94 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>学生信息查询</title>
+    {% load static %}
+    <link href="{% static 'public/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/Daily_items/daily_data.css' %}" rel="stylesheet">
+    <link href="{% static 'css/Daily_items/font-awesome.css' %}?v=4.4.0" rel="stylesheet">
+    <link href="{% static 'css/Daily_items/plugins/iCheck/custom.css' %}" rel="stylesheet">
+    <link href="{% static 'css/Daily_items/animate.css' %}" rel="stylesheet">
+    <link href="{% static 'css/Daily_items/style.css' %}?v=4.1.0" rel="stylesheet">
+    <link type="text/css " rel="stylesheet" href="{% static 'css/Daily_items/ding.css' %}">
+    <script type="text/javascript" src="{% static 'js/Daily_items/ding.js' %}"></script>
+    <script src="{% static 'public/jquery/jquery-3.1.1.min.js' %}?v=2.1.4"></script>
+    <script src="{% static 'public/bootstrap/js/bootstrap.min.js' %}?v=3.3.6"></script>
+</head>
+<body class="white-bg">
+<div class="wrapper wrapper-content">
+    <div class="row">
+        <div class="bread">
+            <ol class="breadcrumb">
+                <li><a href="#">信息查询</a></li>
+                <li class="active" style="">基本查询</li>
+            </ol>
+        </div>
+        <div class="query">
+            <div class="query_text">查询条件</div>
+            <div class="query_up">
+                <div class="col-sm-6">
+                    <div id="road_name1">
+                        <input id="userid" type="text" class="form-control" placeholder="请输入账号" aria-label="请输入账号">
+                        <button class="btn btn-secondary" type="button" onclick="searchbyid()">
+                            <span class="glyphicon glyphicon-search" style="" aria-hidden="true"></span>
+                            <script>
+                                function searchbyid() {
+                                    var id = $('#userid').val();
+                                    window.location.href = "{% url 'users' %}?userid=" + id;
+                                }
+                            </script>
+                        </button>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div id="date01">
+                        <input id="name" type="text" class="form-control" placeholder="请输入用户类型" aria-label="请输入用户类型">
+                        <button class="btn btn-secondary" type="button" onclick="searchbyname()">
+                            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                            <script>
+                                function searchbyname() {
+                                    var name = $('#name').val();
+                                    window.location.href = "{% url 'users' %}?type=" + name;
+                                }
+                            </script>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="query_result">查询结果</div>
+        <div class="text">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th><h4>序号</h4></th>
+                    <th><h4>账号</h4></th>
+                    <th><h4>用户名</h4></th>
+                    <th><h4>账户类型</h4></th>
+                    <th><h4>备注</h4></th>
+                </tr>
+                </thead>
+                <tbody id="road">
+                {% for i in users %}
+                    <tr>
+                        <td class="num">{{ forloop.counter }}</td>
+                        <td class="road_name">{{ i.id }}</td>
+                        <td class="road_place">{{ i.name }}</td>
+                        <td class="road_length">{{ i.type }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            <div class="row pagination-wrap" style="text-align: center">
+                <ul class="pagination pagination-large">
+                    <li><a href="#">前一页</a></li>
+                    <li><a href="#">1</a></li>
+                    <li><a href="#">后一页</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

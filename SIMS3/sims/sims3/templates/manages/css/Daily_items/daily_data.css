@@ -1,0 +1,113 @@
+.div1{
+    width:80%;
+    line-height:1.5em;
+    margin:0 auto;
+    text-align: center;
+    font-size:14px
+}
+.bread{
+    width:100%;
+    height:30px
+}
+.query{
+    margin-top:5px;
+    margin-bottom:5px;
+}
+.query_text{
+    width:100%;
+    height:30px;
+    background:rgb(210,239,232);
+    font-family: sans-serif, å¾®è½¯é›…é»‘;
+    font-size:20px;
+    padding-left:15px;
+    border-radius:4px;
+}
+.query_up{
+    width:100%;
+    height:50px;
+    margin-top:20px;
+}
+#road_name1,#date01,#pipe_name1,#date02,#bridge_name1,#date03{
+    width:300px;
+    height:50px;
+    margin:0 auto;
+}
+#road_name1 button,#date01 button,#pipe_name1 button,#date02 button,#bridge_name1 button,#date03 button{
+    float:right;width:13%;
+    height:60%;
+    background-color: #2f4050
+}
+#road_name1 button span,
+#date01 button span,
+#pipe_name1 button span,
+#date02 button span,
+#bridge_name1 button span,
+#date03 button span{
+    border-radius:4px;
+    color:white
+}
+.query_buttom{
+    margin:0 auto;
+    width:100%;
+    text-align: center;
+    margin-top:20px;
+}
+.query_buttom button{
+    border-radius:4px;
+    background-color: #2f4050;
+    width:180px;
+}
+.query_result{
+    width:100%;
+    height:30px;
+    background:rgb(210,239,232);
+    font-family: sans-serif, å¾®è½¯é›…é»‘;
+    margin-bottom:20px;
+    font-size:20px;
+    padding-left:15px;
+    border-radius:4px;
+}
+.text table{
+    text-align: center;
+    margin:0 auto
+}
+.text table thead tr th{
+    background-color: #2f4050;
+    color:white;
+    width:5%;
+    text-align: center;
+    border:1px solid white
+}
+.num{
+    background-color: #2f4050;
+    color:white;
+}
+#road button,#pipe button,#bridge button{
+    width:50px;
+    background-color: white;
+}
+.modal-content p{
+    font-family: sans-serif,å¾®è½¯é›…é»‘;
+    font-size:25px;
+    text-align: center;
+    margin-top:10px;
+}
+.map{
+    text-align: center;
+}
+.modal-footer{
+    text-align: center;
+    margin:0 auto
+}
+input[type="button"]{
+    width:110px;
+    margin:auto
+}
+input[type="text"]{
+    background-color:whitesmoke;
+    border-radius:4px;
+    float:left;
+    width:87%;
+    height:60%;
+    border:1px solid #2f4050
+}

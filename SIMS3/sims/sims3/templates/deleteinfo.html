@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>删除学生数据</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static '/css/form.css' %}"/>
+</head>
+<body>
+
+<div>
+    <fieldset>
+        <legend align="center"><h1>删除学生信息</h1></legend>
+        <form method="post" action="{% url 'deleteinfo' %}">
+            {% csrf_token %}
+            学号：<select name="studentid" id="studentid">
+            {% for i in students %}
+                <option {% if i.studentid == record.studentid %} selected="selected"
+                {% endif %}> {{ i.studentid }}
+                </option>
+            {% endfor %}
+        </select>
+            姓名：<input type="text" name="name" placeholder="{{ record.name }}" readonly>
+            电话：<input type="text" name="phone" placeholder="{{ record.phone }}" readonly>
+            电邮：<input type="text" name="email" placeholder="{{ record.email }}" readonly>
+            宿舍：<input type="text" name="dorm" placeholder="{{ record.dorm }}" readonly>
+            <center>
+                <input name="cutoff" type="submit" id="check" value=" 检  视 ">
+                <input name="cutoff" type="submit" id="delete" value=" 删  除 ">
+            </center>
+        </form>
+    </fieldset>
+</div>
+{% if messages %}
+    <script>
+        {% for msg in messages %}
+            alert('{{ msg.message }}');
+        {% endfor %}
+    </script>
+{% endif %}
+</body>
+</html>

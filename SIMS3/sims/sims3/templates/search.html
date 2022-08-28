@@ -1,0 +1,131 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>学生信息查询</title>
+    {% load static %}
+    <link href="{% static 'public/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/Daily_items/daily_data.css' %}" rel="stylesheet">
+    <link href="{% static 'css/Daily_items/font-awesome.css' %}?v=4.4.0" rel="stylesheet">
+    <link href="{% static 'css/Daily_items/plugins/iCheck/custom.css' %}" rel="stylesheet">
+    <link href="{% static 'css/Daily_items/animate.css' %}" rel="stylesheet">
+    <link href="{% static 'css/Daily_items/style.css' %}?v=4.1.0" rel="stylesheet">
+    <link type="text/css " rel="stylesheet" href="{% static 'css/Daily_items/ding.css' %}">
+    <script type="text/javascript" src="{% static 'js/Daily_items/ding.js' %}"></script>
+    <script src="{% static 'public/jquery/jquery-3.1.1.min.js' %}?v=2.1.4"></script>
+    <script src="{% static 'public/bootstrap/js/bootstrap.min.js' %}?v=3.3.6"></script>
+</head>
+<body class="white-bg">
+<div class="wrapper wrapper-content">
+    <div class="row">
+        <div class="bread">
+            <ol class="breadcrumb">
+                <li><a href="#">信息查询</a></li>
+                <li class="active" style="">基本查询</li>
+            </ol>
+        </div>
+        <div class="query">
+            <div class="query_text">查询</div>
+            <div class="query_up">
+                <div class="col-sm-6">
+                    <div id="road_name1">
+                        <input id="studentid" type="text" class="form-control" placeholder="请输入学号" aria-label="请输入学号">
+                        <button class="btn btn-secondary" type="button" onclick="searchbyid()">
+                            <span class="glyphicon glyphicon-search" style="" aria-hidden="true"></span>
+                            <script>
+                                function searchbyid() {
+                                    // var id = document.getElementById("studentid").value;
+                                    var id = $('#studentid').val();
+                                    // alert(id);
+                                    window.location.href = "{% url 'search' %}?studentid=" + id;
+                                }
+                            </script>
+                        </button>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div id="date01">
+                        <input id="name" type="text" class="form-control" placeholder="请输入姓名" aria-label="请输入姓名">
+                        <button class="btn btn-secondary" type="button" onclick="searchbyname()">
+                            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                            <script>
+                                function searchbyname() {
+                                    var name = $('#name').val();
+                                    window.location.href = "{% url 'search' %}?name=" + name;
+                                }
+                            </script>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="query_result">查询结果</div>
+        <div class="text">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th><h4>序号</h4></th>
+                    <th><h4>学号</h4></th>
+                    <th><h4>姓名</h4></th>
+                    <th><h4>电话</h4></th>
+                    <th><h4>Email</h4></th>
+                    <th><h4>宿舍</h4></th>
+                    <th><h4>课程-1</h4></th>
+                    <th><h4>课程-2</h4></th>
+                    <th><h4>课程-3</h4></th>
+                    <th><h4>备注</h4></th>
+                </tr>
+                </thead>
+                <tbody id="road">
+                {% for i in students %}
+                    <tr>
+                        <td class="num">{{ forloop.counter }}</td>
+                        <td class="road_name">{{ i.studentid }}</td>
+                        <td class="road_place">{{ i.name }}</td>
+                        <td class="road_length">{{ i.phone }}</td>
+                        <td class="road_width">{{ i.email }}</td>
+                        <td class="liqing_area">{{ i.dorm }}</td>
+                        <td>{{ i.score_1 }}</td>
+                        <td>{{ i.score_2 }}</td>
+                        <td>{{ i.score_3 }}</td>
+                        <td>
+                            <button class="btn btn-secondary" type="button" data-toggle="modal" data-target="#myModal">
+                                <i class="fa fa-camera"></i>
+                                <span class="glyphicon glyphicon-list-alt"></span>
+                            </button>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <!--分页器-->
+        <div class="row pagination-wrap" style="text-align: center">
+            <ul class="pagination pagination-large">
+                {% if students.has_previous %}
+                    <li class="page-item"><a href="/sims3/search/?page={{ students.previous_page_number }}">前一页</a></li>
+                {% endif %}
+                <li class="page-item active"><a
+                        href="/sims3/search/?page={{ students.number }}">{{ students.number }}</a>
+                </li>
+                {% if students.has_next %}
+                    <li class="page-item"><a href="/sims3/search/?page={{ students.next_page_number }}">后一页</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="modal inmodal" id="myModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content animated fadeIn">
+            <p>学生照片</p>
+            <div class="map"><img alt="image" src="{% static 'image/照片.jpg' %}"/></div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-white" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,123 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>学生选课信息查询</title>
+    {% load static %}
+    <link href="{% static 'public/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/Daily_items/daily_data.css' %}" rel="stylesheet">
+    <link href="{% static 'css/Daily_items/font-awesome.css' %}?v=4.4.0" rel="stylesheet">
+    <link href="{% static 'css/Daily_items/plugins/iCheck/custom.css' %}" rel="stylesheet">
+    <link href="{% static 'css/Daily_items/animate.css' %}" rel="stylesheet">
+    <link href="{% static 'css/Daily_items/style.css' %}?v=4.1.0" rel="stylesheet">
+    <link type="text/css " rel="stylesheet" href="{% static 'css/Daily_items/ding.css' %}">
+    <script type="text/javascript" src="{% static 'js/Daily_items/ding.js' %}"></script>
+    <script src="{% static 'public/jquery/jquery-3.1.1.min.js' %}?v=2.1.4"></script>
+    <script src="{% static 'public/bootstrap/js/bootstrap.min.js' %}?v=3.3.6"></script>
+</head>
+<body class="white-bg">
+<div class="wrapper wrapper-content">
+    <div class="row">
+        <div class="bread">
+            <ol class="breadcrumb">
+                <li><a href="#">选课信息查询</a></li>
+                <li class="active" style="">基本查询</li>
+            </ol>
+        </div>
+        <div class="query">
+            <div class="query_text">查询条件</div>
+            <div class="query_up">
+                <div class="col-sm-6">
+                    <div id="road_name1">
+                        <input id="studentid" type="text" class="form-control" placeholder="请输入学号" aria-label="请输入学号">
+                        <button class="btn btn-secondary" type="button" onclick="searchbyid()">
+                            <span class="glyphicon glyphicon-search" style="" aria-hidden="true"></span>
+                            <script>
+                                function searchbyid() {
+                                    // var id = document.getElementById("studentid").value;
+                                    var id = $('#studentid').val();
+                                    // alert(id);
+                                    window.location.href = "{% url 'selected' %}?studentid=" + id;
+                                }
+                            </script>
+                        </button>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div id="date01">
+                        <input id="name" type="text" class="form-control" placeholder="请输入课程号" aria-label="请输入课程号">
+                        <button class="btn btn-secondary" type="button" onclick="searchbycourse()">
+                            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                            <script>
+                                function searchbycourse() {
+                                    var name = $('#name').val();
+                                    window.location.href = "{% url 'selected' %}?courseno=" + name;
+                                }
+                            </script>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="query_result">查询结果</div>
+        <div class="text">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th><h4>序号</h4></th>
+                    <th><h4>学号</h4></th>
+                    <th><h4>姓名</h4></th>
+                    <th><h4>课程号</h4></th>
+                    <th><h4>课程名称</h4></th>
+                    <th><h4>课程教师</h4></th>
+                    <th><h4>学分</h4></th>
+                    <th><h4>开课学期</h4></th>
+                    <th><h4>课时数</h4></th>
+                    <th><h4>备注</h4></th>
+                </tr>
+                </thead>
+                <tbody id="road">
+                {% for i in selections %}
+                    <tr>
+                        <td class="num">{{ forloop.counter }}</td>
+                        <td class="road_name">{{ i.studentid }}</td>
+                        <td class="road_place">{{ i.name }}</td>
+                        <td class="road_place">{{ i.courseNo }}</td>
+                        <td class="road_length">{{ i.coursename }}</td>
+                        <td class="road_width">{{ i.teacher }}</td>
+                        <td class="liqing_area">{{ i.credit }}</td>
+                        <td>{{ i.term }}</td>
+                        <td>{{ i.period }}</td>
+                        <td>
+                            <button class="btn btn-secondary" type="button" data-toggle="modal" data-target="#myModal">
+                                <i class="fa fa-camera"></i>
+                                <span class="glyphicon glyphicon-list-alt"></span>
+                            </button>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            <div class="row pagination-wrap" style="text-align: center">
+                <ul class="pagination pagination-large">
+                    <li><a href="#">前一页</a></li>
+                    <li><a href="#">1</a></li>
+                    <li><a href="#">后一页</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal inmodal" id="myModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content animated fadeIn">
+            <p>选课详细信息</p>
+            <div class="map"><img alt="image" src="{% static 'image/校历.jpg' %}" width="580px"/></div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-white" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>发布课程信息</title>
+</head>
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static '/css/form.css' %}"/>
+<body>
+
+<div>
+    <fieldset>
+        <legend align="center">
+            <h1>发布课程信息</h1></legend>
+        <form method="post" action="{% url 'addcourse' %}">
+            {% csrf_token %}
+            课程号：<input type="text" name="courseNo">
+            课程名：<input type="text" name="name">
+            授课教师：<input type="text" name="teacher">
+            开课时长：<input type="text" name="period">
+            开课学期：<select name="term">
+            <option value="1">大一上学期</option>
+            <option value="2">大一下学期</option>
+            <option value="3">大二上学期</option>
+            <option value="4">大二下学期</option>
+            <option value="5">大三上学期</option>
+            <option value="6">大三下学期</option>
+            <option value="7">大四上学期</option>
+            <option value="8">大四下学期</option>
+            <option value="9">大五上学期</option>
+            <option value="10">大五下学期</option>
+        </select>
+            学分：<input type="text" name="credit">
+            <center><input type="submit" value="保存"></center>
+        </form>
+    </fieldset>
+</div>
+</body>
+</html>

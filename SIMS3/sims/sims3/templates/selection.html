@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>学生选课</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static '/css/form.css' %}"/>
+</head>
+<body class="white-bg">
+
+<div>
+    <fieldset>
+        <legend align="center">
+            <h1>
+                学生选课
+            </h1></legend>
+        <form method="post" name='myForm' action="{% url 'select' %}" style="font-family:幼圆; font-size:18px">
+            {% csrf_token %}
+            学号：<input type="number" name="studentid" required>
+            姓名：<input type="text" name="name" required>
+
+            课程：<select id="selected" name="courseName" onchange="changeCourse()">
+
+            {% for i in courses %}
+                <option value="{{ i }}">
+                    {{ i }}
+                </option>
+            {% endfor %}
+        </select>
+            授课教师：<select id="selecteacher" name="teacher">
+        </select>
+            <center><input type="submit" value=" 选  课 "></center>
+        </form>
+    </fieldset>
+</div>
+
+
+<script>
+    function changeCourse() {
+        with (document.myForm) {
+            var teachers = new Array();
+            {% for i in data %}
+                teachers["{{i.name}}"] = ["{{i.teacher}}"];
+            {% endfor %}
+            var value = courseName.value;
+            teacher.options.length = 0;
+            var option;
+            for (i = 0; i < teachers[value].length; i++) {
+                option = new Option(teachers[value][i], teachers[value][i]);
+                teacher.options.add(option);
+            }
+            if (courseName.value == "0")
+                teacher.disabled = true;
+            else
+                teacher.disabled = false;
+        }
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,120 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>日志信息查询</title>
+    {% load static %}
+    <link href="{% static 'public/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/Daily_items/daily_data.css' %}" rel="stylesheet">
+    <link href="{% static 'css/Daily_items/font-awesome.css' %}?v=4.4.0" rel="stylesheet">
+    <link href="{% static 'css/Daily_items/plugins/iCheck/custom.css' %}" rel="stylesheet">
+    <link href="{% static 'css/Daily_items/animate.css' %}" rel="stylesheet">
+    <link href="{% static 'css/Daily_items/style.css' %}?v=4.1.0" rel="stylesheet">
+    <link type="text/css " rel="stylesheet" href="{% static 'css/Daily_items/ding.css' %}">
+    <script type="text/javascript" src="{% static 'js/Daily_items/ding.js' %}"></script>
+    <script src="{% static 'public/jquery/jquery-3.1.1.min.js' %}?v=2.1.4"></script>
+    <script src="{% static 'public/bootstrap/js/bootstrap.min.js' %}?v=3.3.6"></script>
+</head>
+<body class="white-bg">
+<div class="wrapper wrapper-content">
+    <div class="row">
+        <div class="bread">
+            <ol class="breadcrumb">
+                <li><a href="#">日志信息</a></li>
+                <li class="active" style="">日志查询</li>
+            </ol>
+        </div>
+        <div class="query">
+            <div class="query_text">查询</div>
+            <div class="query_up">
+                <div class="col-sm-6">
+                    <div id="road_name1">
+                        <input id="function" type="text" class="form-control" placeholder="请输入操作类型">
+                        <button class="btn btn-secondary" type="button" onclick="searchbyid()">
+                            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                            <script>
+                                function searchbyid() {
+                                    // var id = document.getElementById("studentid").value;
+                                    var id = $('#function').val();
+                                    // alert(id);
+                                    window.location.href = "{% url 'log' %}?function=" + id;
+                                }
+                            </script>
+                        </button>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div id="date01">
+                        <!--    <input type="text" id="time" class="form-control"  placeholder="请输入日期">-->
+                        <input id="time" type="date" class="form-control" placeholder="请选择日期" onchange=searchbytime()>
+                        <!--                        <button class="btn btn-secondary" type="button" onclick="searchbytime()">-->
+                        <!--                            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>-->
+                        <script>
+                            function searchbytime() {
+                                var name = $('#time').val();
+                                window.location.href = "{% url 'log' %}?time=" + name;
+                            }
+                        </script>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="query_result">查询结果</div>
+        <div class="text">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th><h4>序号</h4></th>
+                    <th><h4>时间</h4></th>
+                    <th><h4>用户名</h4></th>
+                    <th><h4>操作类型</h4></th>
+                    <th><h4>备注</h4></th>
+                </tr>
+                </thead>
+                <tbody id="road">
+                {% for i in logs %}
+                    <tr>
+                        <td class="num">{{ forloop.counter }}</td>
+                        <td class="road_name">{{ i.time|date:"Y-m-d H:i:s" }}</td>
+                        <td class="road_place">{{ i.username }}</td>
+                        <td class="road_length">{{ i.functionname }}</td>
+                        <td class="road_width">{{ i.content }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <!--分页器-->
+        <div class="row pagination-wrap" style="text-align: center">
+            <ul class="pagination pagination-large">
+                {% if logs.has_previous %}
+                    <li class="page-item"><a href="/sims3/log/?page={{ logs.previous_page_number }}">前一页</a></li>
+                {% endif %}
+                <li class="page-item active"><a href="/sims3/log/?page={{ logs.number }}">{{ logs.number }}</a>
+                </li>
+                {% if logs.has_next %}
+                    <li class="page-item"><a href="/sims3/log/?page={{ logs.next_page_number }}">后一页</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</div>
+<!--<script>var inputDate = document.querySelector("#time");-->
+<!--		var changeType = function(){-->
+<!--			this.type = "date";-->
+<!--			console.log(this);-->
+<!--		}-->
+<!--		var removeEvent = function(){-->
+<!--			console.log(this);-->
+<!--			if(this.focus){-->
+<!--				this.removeEventListener("focus",changeType);-->
+<!--				this.removeEventListener("blur",removeEvent)-->
+<!--			}-->
+<!--		}-->
+<!--		inputDate.addEventListener("focus",changeType);-->
+<!--		inputDate.addEventListener("blur",removeEvent);-->
+<!--</script>-->
+</body>
+</html>

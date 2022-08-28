@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>新增用户</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static '/css/form.css' %}"/>
+</head>
+<body>
+
+<div>
+    <fieldset>
+        <legend align="center"><h2>新增用户</h2></legend>
+        <form method="post" action="{% url 'adduser' %}">
+            {% csrf_token %}
+            用户名：<input type="text" name="name">
+            类 型<br>
+            <input type="radio" name="type" value="administrator">管理员
+            <input type="radio" name="type" value="normal" checked>学 生
+            <input type="radio" name="type" value="teacher">教 师 <br>
+            密码：<input type="password" name="password" id="pswd">
+            重复密码：<input type="password" name="repeat" id="repswd">
+            <center><input type="submit" value="保存" class="btn btn-primary"></center>
+        </form>
+    </fieldset>
+</div>
+
+</body>
+</html>

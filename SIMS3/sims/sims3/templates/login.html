@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="stylesheet" type="text/css" href="{% static '/css/login.css' %}"/>
+    <link rel="shortcut icon" href="/static/image/favicon.ico">
+</head>
+
+<body>
+<div class="login-box">
+    <form method="post" action="{% url 'login' %}">
+        {% csrf_token %}
+        <h2>Login</h2>
+        <div class="login-field">
+            UserName
+            <input type="text" name="username" required="required" autocomplete/>
+            Password
+            <input type="password" name="password" required="required" autocomplete/>
+        </div>
+        <div id="select_type">
+            类 型
+            <input type="radio" name="usertype" value="administrator">管理员
+            <input type="radio" name="usertype" value="normal" checked>学 生
+            <input type="radio" name="usertype" value="teacher">教 师 <br><br><br>
+        </div>
+        <div>
+            <button id="submit" type="submit" href="{% url 'student' %}">Login</button>
+            <button id="register" type="button" onclick="location.href=('register')">Register
+            </button>
+        </div>
+    </form>
+</div>
+{% if messages %}
+    <script>
+        {% for msg in messages %}
+            alert('{{ msg.message }}');
+        {% endfor %}
+    </script>
+{% endif %}
+</body>
+</html>

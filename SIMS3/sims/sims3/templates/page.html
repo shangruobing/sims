@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="row pagination-wrap" style="text-align: center">
+    <ul class="pagination pagination-large">
+        {% if stus.has_previous %}
+            <li class="page-item"><a href="/sims3/search/?page_id={{ stus.previous_page_number }}">前一页</a></li>
+        {% endif %}
+        <li class="page-item active"><a href="/sims3/search/?page_id={{ stus.number }}">{{ stus.number }}</a>
+        </li>
+        {% if stus.has_next %}
+            <li class="page-item"><a href="/sims3/search/?page_id={{ stus.next_page_number }}">后一页</a></li>
+        {% endif %}
+    </ul>
+</div>
+</body>
+</html>

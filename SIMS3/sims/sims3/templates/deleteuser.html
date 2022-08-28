@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>删除用户</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static '/css/form.css' %}"/>
+</head>
+<body>
+
+<div>
+    <fieldset>
+        <legend align="center"><h2>删除用户信息</h2></legend>
+        <form method="post" action="{% url 'deleteuser' %}">
+            {% csrf_token %}
+            账号：<select name="id" id="id">
+            {% for i in users %}
+                <option {% if i.id == record.id %} selected="selected"
+                {% endif %}> {{ i.id }}
+                </option>
+            {% endfor %}
+        </select>
+            <br>
+            用户名：<input type="text" name="name" placeholder={{ record.name }}>
+            用户类型：<input type="text" name="type" placeholder={{ record.type }}>
+            <center>
+                <input name="cutoff" type="submit" id="check" value=" 检  视 ">
+                <input name="cutoff" type="submit" id="delete" value=" 删  除 ">
+            </center>
+        </form>
+    </fieldset>
+</div>
+{% if messages %}
+    <script>
+        {% for msg in messages %}
+            alert('{{ msg.message }}');
+        {% endfor %}
+    </script>
+{% endif %}
+</body>
+</html>
